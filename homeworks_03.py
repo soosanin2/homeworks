@@ -1,5 +1,7 @@
+# homework_03
+
 # 1
-print("I love Python" * 42)
+print("I love Python " * 42)
 # ==================
 
 
@@ -17,20 +19,20 @@ print(age_in_years)
 
 # 4
 my_name = "Sviatoslav"
-my_age = "My name is " + str(my_name) + " I'm " + str(age_in_years) + " years old"
+my_age = "My name is " + my_name + ". I'm " + str(age_in_years) + " years old."
 print(my_age)
 # ==================
 
 
 # 5
-first_variable = 1
+my_variable = 1
 
-print(first_variable < 2)
-print(first_variable > 3)
-print(first_variable <= 4)
-print(first_variable >= 5)
-print(first_variable == 6)
-print(first_variable != 7)
+print(my_variable < 2)
+print(my_variable > 3)
+print(my_variable <= 4)
+print(my_variable >= 5)
+print(my_variable == 6)
+print(my_variable != 7)
 # ==================
 
 
