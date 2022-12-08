@@ -49,26 +49,3 @@ else:
 
 
 
-# whether given floating
-# point number is even or odd
-
-# def isEven(s):
-#     l = len(s)
-#     dotSeen = False
-#     for i in range(l - 1, -1, -1):
-#         if (s[i] == '0'
-#                 and dotSeen == False):
-#             continue
-#         if (s[i] == '.'):
-#             dotSeen = True
-#             continue
-#     if ((int)(s[i]) % 2 == 0):
-#         return True
-#     return False
-#
-# s = "100.70"
-# if (isEven(s)):
-#     print("Even")
-# else:
-#     print("Odd")
-
