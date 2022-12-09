@@ -1,5 +1,6 @@
 # homework_03
 
+
 # 1
 print("I love Python " * 42)
 # ==================
