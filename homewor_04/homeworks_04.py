@@ -1,51 +1,47 @@
-# homewor_04
-
+# homewor_05
 
 # 1
 
-print("May not work correctly with fractional numbers!")
-
 in_text = input("input your text: ")
 
-if in_text.isnumeric():
-    print("your nomber is " + in_text)
-    in_text = int(in_text)
-    if in_text % 2 == 0:
-        print("your number is even")
+for i in in_text:
+
+    if i.isdigit():
+        i = int(i)
+        if i % 2 == 0:
+            print(f'This is the number "{i}" it is even')
+        else:
+            print(f'This is the number "{i}" it is odd')
+
+    elif i.isalpha():
+        if i. istitle():
+            print(f'This is the letter "{i}" it is capital')
+        else:
+            print(f'This is the letter "{i}" it is not capital')
+
     else:
-        print("your number is odd")
-else:
-    print("It's yuor text: " + in_text)
+        print(f'This is the symbol "{i}"')
 
-    print("the length of your text is " + str(len(in_text)) + " symbol")
-# ===============
+# =====================
 
 
-# # 2
+# 2.1
 
-# print("May not work correctly with fractional numbers!")
-
-# in_text = input("input your text: ")
+# import time
 #
-# if in_text == "0":
-#     print("your nomber is " + str(in_text))
-#     print("your number is even")
+# while True:
+#     print("I love Python")
+#     time.sleep(4.2)
+
+# ==========================
+
+
+# 2.2
 #
-# try:
-#     if float(in_text):
-#         in_text = float(in_text)
-#         print("your nomber is " + str(in_text))
-#         if in_text % 2 == 0:
-#             print("your number is even")
-#         else:
-#             print("your number is odd")
+# import time
 #
-# except ValueError:
-#     print("It's yuor text: " + in_text)
-#     print("the length of your text is " + str(len(in_text)) + " symbol")
-# ==============
-
-
-
-
-
+# timing = time.time()
+# while True:
+#     if time.time() - timing > 4.2:
+#         timing = time.time()
+#         print("I love Python")
