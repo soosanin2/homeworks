@@ -22,8 +22,12 @@ while True:
             add_split = add_input.split()
             name = add_split[0]
             num = int(add_split[1])
-            phone_book[name] = num
-            print("The subscribers " + add_split[0] + " is added to the phone book")
+            add_sub = phone_book.get(name)
+            if add_sub == None:
+                phone_book[name] = num
+                print("The subscribers " + add_split[0] + " is added to the phone book")
+            else:
+                print("a subscriber with the name " + name + " already exists, try another name")
 
         elif user_input == "stats":
             len_dct = str(len(phone_book))
@@ -51,9 +55,12 @@ while True:
 
             elif user_input == "delete":
                 del_input = input("enter a name: ")
-                # print((f'The subscribers "{del_input}" removed from the phone book'))
-                print("The subscribers " + del_input + " removed from the phone book")
-                del phone_book[del_input]
+                del_sub = phone_book.get(del_input)
+                if del_sub != None:
+                    print("The subscribers " + del_input + " removed from the phone book")
+                    del phone_book[del_input]
+                else:
+                    print("The subscribers " + del_input + " does not exist")
 
             # else:
             #     print("Please select a command from the available")
