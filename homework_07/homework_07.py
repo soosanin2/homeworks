@@ -1,6 +1,6 @@
 # homework_07
 
-phone_book = {}
+phone_book = {"test" : "34567"}
 
 while True:
     user_input = input('\n Select and enter a command \n'
@@ -50,8 +50,12 @@ while True:
         else:
             if user_input == "show":
                 show_input = input("enter a name: ")
-                str_num = str(phone_book.get(show_input))
-                print("Name " + show_input + " number " + str_num)
+                show_sub = phone_book.get(show_input)
+                if show_sub != None:
+                    str_num = str(phone_book.get(show_input))
+                    print("Name " + show_input + " number " + str_num)
+                else:
+                    print("The subscribers " + show_input + " does not exist")
 
             elif user_input == "delete":
                 del_input = input("enter a name: ")
