@@ -40,26 +40,24 @@
 # # проте програма не має завершити своєї роботи.
 # #
 
-class MyManager:
-    def __enter__(self):
-        print("==========")
-        try:
-            pass
-        except Exception as oll_exception:
-            print((f'this exception: {oll_exception}'))
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-
-        print("==========")
-
-
-with MyManager():
-    some_text = "some_text"
-    print(some_text)
-
-some_text = "some_text"
-
+# class MyManager:
+#     def __enter__(self):
+#         print("==========")
+#         try:
+#             pass
+#         except Exception as oll_exception:
+#             print((f'this exception: {oll_exception}'))
 #
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#
+#         print("==========")
+#
+#
+# with MyManager():
+#     some_text = "some_text"
+#     print(some_text)
+#
+# some_text = "some_text"
 
 
 
