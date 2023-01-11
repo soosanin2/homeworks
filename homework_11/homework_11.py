@@ -3,7 +3,6 @@
 import time
 
 
-
 def deco_time_and_name(func_to_deco):
     def print_time_and_name():
         str_name = func_to_deco.__name__
@@ -11,22 +10,16 @@ def deco_time_and_name(func_to_deco):
         str_time = time.ctime()
         print(f"start function time - {str_time}")
         func_to_deco()
-        return
 
-    return print_time_and_name()
+    return print_time_and_name
 
-# @ deco_time_and_name
-# def qwert():
-#     sdf = '1234'
-#     print(sdf)
-#     return
+
 
 @ deco_time_and_name
 def standard_func():
     print("this is a standard function")
-    return
 
-# qwert()
+
 standard_func()
 
 
