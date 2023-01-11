@@ -1,26 +1,24 @@
 # # 1 Написати власний декоратор, задачею якого має бути друк назви функції і
 # # часу, коли вона була викликана. Декоратор має працювати для різних функцій однаково.
-import time
+# import time
 
 
-def deco_time_and_name(func_to_deco):
-    def print_time_and_name():
-        str_name = func_to_deco.__name__
-        print(f"function name - {str_name}")
-        str_time = time.ctime()
-        print(f"start function time - {str_time}")
-        func_to_deco()
-
-    return print_time_and_name
-
-
-
-@ deco_time_and_name
-def standard_func():
-    print("this is a standard function")
-
-
-standard_func()
+# def deco_time_and_name(func_to_deco):
+#     def print_time_and_name():
+#         str_name = func_to_deco.__name__
+#         print(f"function name - {str_name}")
+#         str_time = time.ctime()
+#         print(f"start function time - {str_time}")
+#         func_to_deco()
+#
+#     return print_time_and_name
+#
+#
+# @ deco_time_and_name
+# def standard_func():
+#     print("this is a standard function")
+#
+# standard_func()
 
 
 
@@ -41,9 +39,33 @@ standard_func()
 # # У випадку виникнення будь-якої помилки вона має бути надрукована текстом,
 # # проте програма не має завершити своєї роботи.
 # #
-# #
-# #
+
+class MyManager:
+    def __enter__(self):
+        print("==========")
+        try:
+            pass
+        except Exception as oll_exception:
+            print((f'this exception: {oll_exception}'))
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+
+        print("==========")
+
+
+with MyManager():
+    some_text = "some_text"
+    print(some_text)
+
+some_text = "some_text"
+
 #
+
+
+
+# 4 Написати конструкцію try ... except ... else ... finally, яка буде робити точно те ж,
+# що і менеджер контексту із попереднього завдання.
+
 # some_text = "some_text"
 # try:
 #     print("==========")
@@ -54,7 +76,5 @@ standard_func()
 #
 # finally:
 #     print("==========")
-
-
 
 
