@@ -6,7 +6,7 @@
 # і JSON string в dict (при читанні із файлу). Файл слід оновлювати після кожної успішної операції add або delete.
 
 import json
-
+import time
 
 
 def ubd_dict(data_j):
@@ -101,3 +101,64 @@ while True:
 
     except ValueError:
         print("Sorry invalid request, try again")
+
+
+
+# 2. Написати декоратор, який буде записувати в файл назву функції, яку він декорує, і писати час її виклику.
+
+
+
+def deco_time_and_name(func_to_deco):
+    def print_time_and_name(*args, **kwargs):
+        str_name = func_to_deco.__name__
+        name_f = "function name " + str_name
+        print(name_f)
+        str_time = time.ctime()
+        name_t = "start function time " + str_time
+        print(name_t)
+        func_to_deco()
+
+        try:
+            with open('data_func.json', 'x') as file:
+                pass
+
+        except FileExistsError:
+            with open('data_func.json', 'w') as file:
+                file.write(name_f + '\n' + name_t)
+        return
+    return print_time_and_name
+
+@ deco_time_and_name
+def standard_func():
+    print("this is a standard function")
+
+standard_func()
+
+
+# 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
+
+class MyManager:
+    def __enter__(self, *args, **kwargs):
+        pass
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_type != None:
+            exc_name = "this exception " + str(exc_val)
+            print(exc_name)
+            str_time = time.ctime()
+            exc_time = "start function time " + str_time
+            print(exc_time)
+
+            try:
+                with open('exc_data.json', 'x') as file:
+                    pass
+            except FileExistsError:
+                with open('exc_data.json', 'w') as file:
+                    file.write(exc_name + '\n' + exc_time)
+                return True
+        else:
+            pass
+
+
+with MyManager():
+    some_text = "some_text"
+    print(some_text)
