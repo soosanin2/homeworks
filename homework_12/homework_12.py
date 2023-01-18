@@ -164,3 +164,4 @@ class MyManager:
 with MyManager():
     some_text = "some_text"
     print(some_text)
+
