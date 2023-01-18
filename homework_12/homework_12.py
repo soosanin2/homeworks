@@ -9,6 +9,7 @@ import json
 import time
 
 
+
 def ubd_dict(data_j):
     data_j = json.dumps(data_j)
     with open('phone_book.json', 'w+') as new_file:
@@ -119,8 +120,8 @@ def deco_time_and_name(func_to_deco):
         func_to_deco()
 
         try:
-            with open('data_func.json', 'x') as file:
-                pass
+            with open('data_func.json', 'x+') as file:
+                file.write(name_t + '\n' + name_f)
 
         except FileExistsError:
             with open('data_func.json', 'w') as file:
@@ -149,8 +150,9 @@ class MyManager:
             print(exc_time)
 
             try:
-                with open('exc_data.json', 'x') as file:
-                    pass
+                with open('exc_data.json', 'x+') as file:
+                    file.write(exc_name + '\n' + exc_time)
+
             except FileExistsError:
                 with open('exc_data.json', 'w') as file:
                     file.write(exc_name + '\n' + exc_time)
