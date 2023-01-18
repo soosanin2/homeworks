@@ -10,7 +10,7 @@ def deco_time_and_name(func_to_deco):
         print(f"function name - {str_name}")
         str_time = time.ctime()
         print(f"start function time - {str_time}")
-        func_to_deco()
+        func_to_deco(*args, **kwargs)
         return
     return print_time_and_name
 
@@ -47,7 +47,12 @@ class MyManager:
         if exc_type != None:
             print(f'this exception: {exc_val}')
 
+        else:
+            pass
+
         print("==========")
+
+
         return True
 
 
