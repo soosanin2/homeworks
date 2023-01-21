@@ -9,7 +9,7 @@ def deco(func):
         print(f"function name - {str_name}")
         str_time = time.ctime()
         print(f"start function time - {str_time}")
-        rez = func(*args, **kwargs) + 3
+        rez = func(*args, **kwargs)
         return rez
     return wrap
 
