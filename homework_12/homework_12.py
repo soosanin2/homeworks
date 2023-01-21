@@ -117,7 +117,7 @@ def deco_time_and_name(func_to_deco):
         str_time = time.ctime()
         name_t = "start function time " + str_time
         print(name_t)
-        func_to_deco()
+        rez = func_to_deco(*args, **kwargs)
 
         try:
             with open('data_func.json', 'x+') as file:
@@ -126,7 +126,7 @@ def deco_time_and_name(func_to_deco):
         except FileExistsError:
             with open('data_func.json', 'w') as file:
                 file.write(name_f + '\n' + name_t)
-        return
+        return rez
     return print_time_and_name
 
 @ deco_time_and_name
