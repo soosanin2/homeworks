@@ -1,12 +1,10 @@
-# 1. Використати файл як базу даних для збереження записів телефонної книги із попередніх завдань.
-#
-# Ваша телефонна книга, що до цього містилася в dict, має зберігатися у вигляді тексту в JSON форматі.
-# При закритті програми і повторному відкритті всі попередні дані мають бути доступними.
-# Підказка: Ви можете використати бібліотеку json, яка допоможе із перетворенням dict в JSON string (при записі в файл)
-# і JSON string в dict (при читанні із файлу). Файл слід оновлювати після кожної успішної операції add або delete.
+# 1. До завдання, в якому ви реалізовували телефонну книгу,
+# додати валідацію номера телефону за допомогою RegEx.
+# Врахувати можливість декількох форматів: +380XXXXXXXXX, 380XXXXXXXXX, 0XXXXXXXXX
 
 import json
 import time
+
 
 
 def ubd_dict(data_j):
@@ -27,20 +25,17 @@ def r_dict():
             return json_data
 
 
-try:
-    file = open('phone_book.json')
-    file.close()
-except FileNotFoundError:
-    print('File not found, created a new phone book')
-    file = open('phone_book.json', 'x')
-    file.close()
-
-
 while True:
     user_input = input('\n Select and enter a command \n'
                        '(stats, add, delete, list, show): ')
     print(user_input)
 
+    try:
+        file = open('phone_book.json')
+    except FileNotFoundError:
+        print('File not found, created a new phone book')
+        with open('phone_book.json', 'x'):
+            pass
 
     phone_book = r_dict()
 
@@ -104,61 +99,3 @@ while True:
 
     except ValueError:
         print("Sorry invalid request, try again")
-
-
-
-# 2. Написати декоратор, який буде записувати в файл назву функції, яку він декорує, і писати час її виклику.
-
-
-
-def deco_time_and_name(func_to_deco):
-    def print_time_and_name(*args, **kwargs):
-        str_name = func_to_deco.__name__
-        name_f = "function name " + str_name
-        print(name_f)
-        str_time = time.ctime()
-        name_t = "start function time " + str_time
-        print(name_t)
-        rez = func_to_deco(*args, **kwargs)
-
-        try:
-            with open('data_func.json', 'a+') as file:
-                file.write(name_t + '\n' + name_f)
-
-        except FileExistsError:
-            with open('data_func.json', 'w') as file:
-                file.write(name_f + '\n' + name_t)
-        return rez
-    return print_time_and_name
-
-@ deco_time_and_name
-def standard_func():
-    print("this is a standard function")
-
-standard_func()
-
-
-# 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
-
-class MyCustomException(Exception):
-    print("Custom exception is occured")
-    exc_name = "this exception " + str(Exception)
-    print(exc_name)
-    str_time = time.ctime()
-    exc_time = "start function time " + str_time
-    print(exc_time)
-
-    try:
-        with open('exc_data.json', 'a+') as file:
-            file.write('\n' + exc_name + '\n' + exc_time)
-
-    except FileExistsError:
-        with open('exc_data.json', 'w') as file:
-            file.write(exc_name + '\n' + exc_time)
-
-
-raise MyCustomException()
-
-
-
-
