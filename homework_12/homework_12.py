@@ -1,5 +1,4 @@
 # 1. Використати файл як базу даних для збереження записів телефонної книги із попередніх завдань.
-#
 # Ваша телефонна книга, що до цього містилася в dict, має зберігатися у вигляді тексту в JSON форматі.
 # При закритті програми і повторному відкритті всі попередні дані мають бути доступними.
 # Підказка: Ви можете використати бібліотеку json, яка допоможе із перетворенням dict в JSON string (при записі в файл)
@@ -7,7 +6,6 @@
 
 import json
 import time
-
 
 
 def ubd_dict(data_j):
@@ -28,17 +26,20 @@ def r_dict():
             return json_data
 
 
+try:
+    file = open('phone_book.json')
+    file.close()
+except FileNotFoundError:
+    print('File not found, created a new phone book')
+    file = open('phone_book.json', 'x')
+    file.close()
+
+
 while True:
     user_input = input('\n Select and enter a command \n'
                        '(stats, add, delete, list, show): ')
     print(user_input)
 
-    try:
-        file = open('phone_book.json')
-    except FileNotFoundError:
-        print('File not found, created a new phone book')
-        with open('phone_book.json', 'x'):
-            pass
 
     phone_book = r_dict()
 
@@ -120,7 +121,7 @@ def deco_time_and_name(func_to_deco):
         rez = func_to_deco(*args, **kwargs)
 
         try:
-            with open('data_func.json', 'x+') as file:
+            with open('data_func.json', 'a+') as file:
                 file.write(name_t + '\n' + name_f)
 
         except FileExistsError:
@@ -136,32 +137,24 @@ def standard_func():
 standard_func()
 
 
+
 # 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
 
-class MyManager:
-    def __enter__(self, *args, **kwargs):
-        pass
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if exc_type != None:
-            exc_name = "this exception " + str(exc_val)
-            print(exc_name)
-            str_time = time.ctime()
-            exc_time = "start function time " + str_time
-            print(exc_time)
+class MyCustomException(Exception):
+    print("Custom exception is occured")
+    exc_name = "this exception " + str(Exception)
+    print(exc_name)
+    str_time = time.ctime()
+    exc_time = "start function time " + str_time
+    print(exc_time)
 
-            try:
-                with open('exc_data.json', 'x+') as file:
-                    file.write(exc_name + '\n' + exc_time)
+    try:
+        with open('exc_data.json', 'a+') as file:
+            file.write('\n' + exc_name + '\n' + exc_time)
 
-            except FileExistsError:
-                with open('exc_data.json', 'w') as file:
-                    file.write(exc_name + '\n' + exc_time)
-                return True
-        else:
-            pass
+    except FileExistsError:
+        with open('exc_data.json', 'w') as file:
+            file.write(exc_name + '\n' + exc_time)
 
 
-with MyManager():
-    some_text = "some_text"
-    print(some_text)
-
+raise MyCustomException()
