@@ -1,5 +1,4 @@
 # 1. Використати файл як базу даних для збереження записів телефонної книги із попередніх завдань.
-#
 # Ваша телефонна книга, що до цього містилася в dict, має зберігатися у вигляді тексту в JSON форматі.
 # При закритті програми і повторному відкритті всі попередні дані мають бути доступними.
 # Підказка: Ви можете використати бібліотеку json, яка допоможе із перетворенням dict в JSON string (при записі в файл)
@@ -138,27 +137,54 @@ def standard_func():
 standard_func()
 
 
+
 # 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
+#
 
-class MyCustomException(Exception):
-    print("Custom exception is occured")
-    exc_name = "this exception " + str(Exception)
-    print(exc_name)
-    str_time = time.ctime()
-    exc_time = "start function time " + str_time
-    print(exc_time)
+# class MyCustomException(Exception):
+# <<<<<<< homeworks_013
+#     print("Custom exception is occured")
+#     exc_name = "this exception " + str(Exception)
+#     print(exc_name)
+#     str_time = time.ctime()
+#     exc_time = "start function time " + str_time
+#     print(exc_time)
 
-    try:
-        with open('exc_data.json', 'a+') as file:
-            file.write('\n' + exc_name + '\n' + exc_time)
+#     try:
+#         with open('exc_data.json', 'a+') as file:
+#             file.write('\n' + exc_name + '\n' + exc_time)
 
-    except FileExistsError:
-        with open('exc_data.json', 'w') as file:
-            file.write(exc_name + '\n' + exc_time)
+#     except FileExistsError:
+#         with open('exc_data.json', 'w') as file:
+#             file.write(exc_name + '\n' + exc_time)
 
+
+# raise MyCustomException()
+
+# =======
+
+#     # def __init__(self, massage):
+#     # чи обов'язково використовувати 'massage' ?
+# >>>>>>> main
+
+    def __init__(self):
+
+        print("Custom exception is occured")
+        exc_name = "this exception " + str(Exception)
+        print(exc_name)
+        str_time = time.ctime()
+        exc_time = "start function time " + str_time
+        print(exc_time)
+
+# <<<<<<< homeworks_013
+# =======
+#         try:
+#             with open('exc_data.json', 'a+') as file:
+#                 file.write('\n' + exc_name + '\n' + exc_time)
+
+#         except FileExistsError:
+#             with open('exc_data.json', 'w') as file:
+#                 file.write(exc_name + '\n' + exc_time)
+# >>>>>>> main
 
 raise MyCustomException()
-
-
-
-
