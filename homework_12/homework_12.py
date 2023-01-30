@@ -141,10 +141,31 @@ standard_func()
 # 3. В попередньо написаний кастомний Exception додати запис помилки і час її виникнення у файл.
 #
 
-class MyCustomException(Exception):
+# class MyCustomException(Exception):
+# <<<<<<< homeworks_013
+#     print("Custom exception is occured")
+#     exc_name = "this exception " + str(Exception)
+#     print(exc_name)
+#     str_time = time.ctime()
+#     exc_time = "start function time " + str_time
+#     print(exc_time)
 
-    # def __init__(self, massage):
-    # чи обов'язково використовувати 'massage' ?
+#     try:
+#         with open('exc_data.json', 'a+') as file:
+#             file.write('\n' + exc_name + '\n' + exc_time)
+
+#     except FileExistsError:
+#         with open('exc_data.json', 'w') as file:
+#             file.write(exc_name + '\n' + exc_time)
+
+
+# raise MyCustomException()
+
+# =======
+
+#     # def __init__(self, massage):
+#     # чи обов'язково використовувати 'massage' ?
+# >>>>>>> main
 
     def __init__(self):
 
@@ -155,12 +176,15 @@ class MyCustomException(Exception):
         exc_time = "start function time " + str_time
         print(exc_time)
 
-        try:
-            with open('exc_data.json', 'a+') as file:
-                file.write('\n' + exc_name + '\n' + exc_time)
+# <<<<<<< homeworks_013
+# =======
+#         try:
+#             with open('exc_data.json', 'a+') as file:
+#                 file.write('\n' + exc_name + '\n' + exc_time)
 
-        except FileExistsError:
-            with open('exc_data.json', 'w') as file:
-                file.write(exc_name + '\n' + exc_time)
+#         except FileExistsError:
+#             with open('exc_data.json', 'w') as file:
+#                 file.write(exc_name + '\n' + exc_time)
+# >>>>>>> main
 
 raise MyCustomException()
