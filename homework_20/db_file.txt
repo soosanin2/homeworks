@@ -1,0 +1,31 @@
+Перед виконанням домашнього завдання, потрібно завантажити базу даних за посиланням.
+
+1. Створити базу даних SQLite. Використовуючи SQL запити, в створеній базі даних
+створити таблицю, яка має містити наступні поля:
+id - значення для кожного нового елементу має за замовчуванням бути +1 від попереднього
+first_name — текстове значення
+last_name — текстове значення
+age — число
+Формат здачі:
+Зберегти запит для створення таблиці в файл і запушити на git-репозиторій.
+
+2. Створити SQL запити для додавання записів у створену таблицю. Створити запити
+для додавання мінімум 5 різних записів.
+Формат здачі:
+Запити зберегти в окремий файл і запушити на git-репозиторій
+
+
+CREATE TABLE my_tab (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+first_name TEXT,
+last_name TEXT,
+age INTEGER
+);
+
+
+INSERT INTO my_tab (first_name, last_name, age) VALUES ('kurt', 'cobain', 28);
+INSERT INTO my_tab (first_name, last_name, age) VALUES ('yuri', 'khoi', 36);
+INSERT INTO my_tab (first_name, last_name, age) VALUES ('bob', 'marley', 37);
+INSERT INTO my_tab (first_name, last_name, age) VALUES ('mikhail', 'gorshnev', 40);
+INSERT INTO my_tab (first_name, last_name, age) VALUES ('michael', 'jackson', 51);
+
