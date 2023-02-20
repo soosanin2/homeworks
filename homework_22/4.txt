@@ -1,0 +1,4 @@
+SELECT users.id, COUNT(purchase.user_id) as purchases_count
+    FROM purchase
+        INNER JOIN users ON purchase.user_id = users.id
+    GROUP BY user_id;
