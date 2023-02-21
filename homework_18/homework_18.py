@@ -47,55 +47,6 @@ some_bot.send_message(messege = "som text")
 # telegram_bot.send_message('Hello')
 # >> > "TG bot says Hello to chat 1 using None"
 
-# class Bot:
-#
-#     def __init__(self, name):
-#         self.name = name
-#
-#     def say_name(self):
-#         print(self.name)
-#
-#     def send_message(self, messege):
-#         self.messege = messege
-#         print(self.messege)
-#
-#
-# class TelegramBot(Bot):
-#
-#     url = None
-#     chat_id = None
-#
-#     def __int__(self, url, chat_id):
-#         self.url = url
-#         self.chat_id = chat_id
-#
-#     def send_message(self, messege):
-#         self.messege = messege
-#         print(f"{self.name} bot says {self.messege} to chat {self.chat_id} using {self.url}")
-#
-#     def set_url(self, url):
-#         self.url = url
-#
-#     def set_chat_id(self, chat_id):
-#         self.chat_id = chat_id
-#
-# some_bot = Bot("Marvin")
-# some_bot.say_name()
-# #
-# some_bot.send_message("Hello")
-#
-# telegram_bot = TelegramBot("TG")
-# telegram_bot.say_name()
-#
-# telegram_bot.send_message('Hello')
-
-# telegram_bot.set_chat_id(1)
-# telegram_bot.send_message('Hello')
-
-
-
-
-
 
 class Bot:
 
@@ -112,10 +63,10 @@ class Bot:
 
 class TelegramBot(Bot):
 
-    def __int__(self, url=None, chat_id=None):
+    def __init__(self, name, url=None, chat_id=None):
+        super().__init__(name)
         self.url = url
         self.chat_id = chat_id
-
 
     def send_message(self, messege):
         self.messege = messege
@@ -134,9 +85,6 @@ some_bot.send_message("Hello")
 
 telegram_bot = TelegramBot("TG")
 telegram_bot.say_name()
-telegram_bot.set_chat_id(None)
-telegram_bot.set_url(None)
-
 
 telegram_bot.send_message('Hello')
 
