@@ -1,12 +1,13 @@
 
 # 1. Створити клас Bot з атрибутом name та методами say_name та send_message.
-#
 # send_message має приймати параметри self і message і має друкувати message.
-#
 # Метод say_name має друкувати значення атрибуту name.
 
 class Bot:
-    name = "Bot"
+
+    def __init__(self, name):
+        self.name = name
+
 
     def say_name(self):
         print(self.name)
@@ -15,7 +16,7 @@ class Bot:
         self.messege = messege
         print(self.messege)
 
-some_bot = Bot()
+some_bot = Bot("Bobby")
 
 some_bot.say_name()
 some_bot.send_message(messege = "som text")
@@ -46,6 +47,7 @@ some_bot.send_message(messege = "som text")
 # telegram_bot.send_message('Hello')
 # >> > "TG bot says Hello to chat 1 using None"
 
+
 class Bot:
 
     def __init__(self, name):
@@ -60,16 +62,15 @@ class Bot:
 
 
 class TelegramBot(Bot):
-    url = None
-    chat_id = None
 
-    def __int__(self, url, chat_id):
+    def __init__(self, name, url=None, chat_id=None):
+        super().__init__(name)
         self.url = url
         self.chat_id = chat_id
 
     def send_message(self, messege):
         self.messege = messege
-        print(f"{self.name} bot says Hello to chat {self.chat_id} using {self.url}")
+        print(f"{self.name} bot says {self.messege} to chat {self.chat_id} using {self.url}")
 
     def set_url(self, url):
         self.url = url
