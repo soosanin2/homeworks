@@ -1,0 +1,5 @@
+SELECT COUNT(purchase.book_id) as amount FROM purchase
+    JOIN books ON purchase.book_id = books.id WHERE author = "Rowling";
+
+-- SELECT COUNT(purchase.book_id) as amount FROM purchase
+--      WHERE book_id = 1 OR book_id = 2 OR book_id = 3;
