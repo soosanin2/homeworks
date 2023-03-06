@@ -1,0 +1,58 @@
+
+.photo {
+    width: 120px;
+    border-radius: 50%;
+border: 5px gainsboro solid;
+box-shadow: 0 0 10px #444;
+    float:left;
+    margin:10px;
+    margin-top:0px;
+}
+body{
+    width: 900px;
+    margin: auto;
+}
+.education {
+    border: 5px;
+    width: 800px;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tleft{
+    width: 200px;
+    text-align: left;
+}
+.tjustify{
+    text-align: justify;
+}
+
+.homework {
+    width: 100%;
+    height: auto;
+
+    text-align: center;
+}
+
+.text {
+    text-align: justify;
+    text-indent: 30px;
+}
+
+.my-table {
+    border:  1px solid black;
+    background: gainsboro;
+    border-collapse: collapse;
+    width: 75%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my-table th, .my-table td {
+    border: 1px solid black;
+}
+
+.id-cell {
+    font-style: italic;
+}
