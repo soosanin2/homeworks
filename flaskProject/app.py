@@ -43,7 +43,7 @@ def get_users(name_id):
     return f"Not Found", 404
 
 
-@app.get('/users/<string:title>')
+@app.get('/books/<string:title>')
 def get_books(title):
     return title.title(), 200
 
