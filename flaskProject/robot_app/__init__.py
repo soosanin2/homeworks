@@ -14,7 +14,7 @@ app = Flask(__name__, template_folder='templates')
 # запуск кофігурацій з файлу config.py
 app.config.from_object(AppConfig)
 
-
+from .old_views import *
 from .views import *
 from .class_based_views import *
 
