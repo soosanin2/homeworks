@@ -1,6 +1,5 @@
 
 from flask import Flask, render_template, redirect, abort
-from flask_sqlalchemy import SQLAlchemy
 import logging
 from .config import AppConfig
 
