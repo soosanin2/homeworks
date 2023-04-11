@@ -5,10 +5,12 @@ from .config import AppConfig
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
+
 app = Flask(__name__, template_folder='templates')
 
 
 app.config.from_object(AppConfig)
+
 
 
 from .views import *
