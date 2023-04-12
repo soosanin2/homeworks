@@ -12,8 +12,5 @@ app = Flask(__name__, template_folder='templates')
 app.config.from_object(AppConfig)
 
 
-
 from .views import *
-from .class_based_views import *
-
 
