@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>books</title>
+</head>
+<body>
+    <div>Hello {{ username }}!</div>
+    <div>{{ title_res }}</div>
+    <div>
+        <ul>
+            {% for i in res %}
+            <li> {{ i }} </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

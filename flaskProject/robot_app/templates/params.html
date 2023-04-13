@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>params</title>
+</head>
+<body>
+    <div>Hello {{ username }}!</div>
+    <div>
+        <table>
+            <tr>
+                <th> parameter </th>
+                <th> value </th>
+            </tr>
+            <tr>
+                {% for key, value in  item %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+
+                {% endfor %}
+            </tr>
+        </table>
+
+
+
+    </div>
+
+</body>
+</html>
