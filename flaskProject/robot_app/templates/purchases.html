@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchases</title>
+</head>
+<body>
+    <div>
+        {% if id_purchase %}
+            <h1>Purchas {{ id_purchase.id }}</h1>
+            <ul>
+              <li>User ID: {{ id_purchase.user_id }}</li>
+              <li>Book ID: {{ id_purchase.book_id }}</li>
+              <li>Date: {{ id_purchase.date }}</li>
+            </ul>
+
+        {% else %}
+            <h1>Purchases</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>User ID</th>
+                  <th>Book ID</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for purchase in purchases %}
+                <tr>
+                  <td>{{ purchase.id }}</td>
+                  <td>{{ purchase.user_id }}</td>
+                  <td>{{ purchase.book_id }}</td>
+                  <td>{{ purchase.date }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+</body>
+</html>
+
+
+

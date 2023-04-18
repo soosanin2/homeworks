@@ -5,9 +5,38 @@
     <title>users</title>
 </head>
 <body>
-    <div>Hello {{ username }}!</div>
     <div>
-        {{ res }}
+        {% if id_user %}
+            <h1>User {{ id_user.id }}</h1>
+            <ul>
+              <li>First Name: {{ id_user.first_name }}</li>
+              <li>Last Name: {{ id_user.last_name }}</li>
+              <li>Age: {{ id_user.age }}</li>
+            </ul>
+
+        {% else %}
+            <h1>Users</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.age }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
     </div>
 
 </body>

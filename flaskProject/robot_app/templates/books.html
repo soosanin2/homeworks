@@ -2,17 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>books</title>
+    <title>users</title>
 </head>
 <body>
-    <div>Hello {{ username }}!</div>
-    <div>{{ title_res }}</div>
+
     <div>
-        <ul>
-            {% for i in res %}
-            <li> {{ i }} </li>
-            {% endfor %}
-        </ul>
+        {% if id_book %}
+            <h1>Book {{ id_book.id }}</h1>
+            <ul>
+              <li>Title: {{ id_book.title }}</li>
+              <li>Author: {{ id_book.author }}</li>
+              <li>Price: {{ id_book.price }}</li>
+            </ul>
+
+        {% else %}
+            <h1>Books</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for book in books %}
+                <tr>
+                  <td>{{ book.id }}</td>
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.price }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
     </div>
+
 </body>
 </html>
