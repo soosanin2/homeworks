@@ -3,22 +3,21 @@
 
 import time
 
-
-def deco_time_and_name(func_to_deco):
-    def print_time_and_name(*args, **kwargs):
-        str_name = func_to_deco.__name__
+def deco(func):
+    def wrap(*args, **kwargs):
+        str_name = func.__name__
         print(f"function name - {str_name}")
         str_time = time.ctime()
         print(f"start function time - {str_time}")
-        func_to_deco()
-        return
-    return print_time_and_name
+        rez = func(*args, **kwargs)
+        return rez
+    return wrap
 
-@ deco_time_and_name
-def standard_func():
-    print("this is a standard function")
+@ deco
+def my_func(x, y):
+    return (x + y)
 
-standard_func()
+print(my_func(2, 4))
 
 
 
@@ -29,7 +28,7 @@ class MyCustomException(Exception):
     print("Custom exception is occured")
 
 
-# raise MyCustomException()
+raise MyCustomException()
 
 
 
@@ -47,7 +46,12 @@ class MyManager:
         if exc_type != None:
             print(f'this exception: {exc_val}')
 
+        else:
+            pass
+
         print("==========")
+
+
         return True
 
 
@@ -70,3 +74,5 @@ except Exception as oll_exception:
 
 finally:
     print("==========")
+
+

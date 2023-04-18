@@ -1,0 +1,2 @@
+SELECT purchase.id, purchase.date, users.first_name, users.last_name
+FROM purchase, users WHERE purchase.user_id = users.id;

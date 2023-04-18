@@ -5,10 +5,13 @@ from robot_app import app
 from flask import request, render_template, make_response, redirect, abort, session, url_for
 from .models import User, Book, Purchase
 from markupsafe import escape
+
+
 import werkzeug.exceptions
 import json
 import jinja2
 import random
+
 
 app.secret_key = os.getenv('SECRET_KEY')
 
