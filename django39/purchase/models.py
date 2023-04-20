@@ -9,3 +9,6 @@ class Purchase(models.Model):
 
     class Meta:
         db_table = 'purchase'
+
+    def __str__(self):
+        return f"User Id:{self.user.id}   book id:{self.book.id}   date:{self.date}"

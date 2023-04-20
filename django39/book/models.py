@@ -8,6 +8,9 @@ class PublishingHouse(models.Model):
     class Meta:
         db_table = 'publishing_house'
 
+    def __str__(self):
+        return f" publishing house: {self.name} - rating: {self.rating}"
+
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -18,3 +21,6 @@ class Book(models.Model):
 
     class Meta:
         db_table = 'book'
+
+    def __str__(self):
+        return f"Title: {self.title}, author :{self.author}, date: {self.year}, price: {self.price}, publishing house: {self.publishing_house}"
