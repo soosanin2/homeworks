@@ -4,5 +4,8 @@ from .models import Purchase
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = ('id', 'user_id', 'book_id', 'date')
+    ordering = ('id', )
+
 
