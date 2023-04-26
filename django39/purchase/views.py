@@ -1,5 +1,26 @@
 from django.http import JsonResponse
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView
+
 from .models import Purchase
+from .forms import PurchaseForm
+
+
+class OllPurchasesList(ListView):
+    model = Purchase
+
+
+class IdPurchase(DetailView):
+    model = Purchase
+    pk_url_kwarg = 'purchase_id'
+
+
+class CreatePurchase(CreateView):
+    model = Purchase
+    form_class = PurchaseForm
+    template_name = 'purchase/purchase_form.html'
+    success_url = reverse_lazy('purchase-list')
+
 
 def get_purchases(request):
     purchases = Purchase.objects.all()
