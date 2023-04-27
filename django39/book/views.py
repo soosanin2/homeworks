@@ -2,8 +2,25 @@ from django.http import JsonResponse, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 
-from .models import Book
-from .forms import BookForm
+from .models import Book, PublishingHouse
+from .forms import BookForm, PublishingHouseForm
+
+
+class OllPublishingHouse(ListView):
+    model = PublishingHouse
+    template_name = 'book/publishing_house_list.html'
+
+class IdPublishingHouse(DetailView):
+    model = PublishingHouse
+    pk_url_kwarg = 'publishing_house_id'
+    template_name = 'book/publishing_house_detail.html'
+
+class CreatePublishingHouse(CreateView):
+    model = PublishingHouse
+    form_class = PublishingHouseForm
+    template_name = 'book/publishing_house_form.html'
+    success_url = reverse_lazy('publishing_house-list')
+
 
 
 class OllBooksList(ListView):
