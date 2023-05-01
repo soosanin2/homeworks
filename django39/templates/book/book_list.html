@@ -1,0 +1,8 @@
+
+<div>
+    <ul>
+    {% for book in object_list %}
+        Title: {{ book.title }} Author: {{ book.author }} Year: {{ book.year }} Price: {{ book.price }}<br>
+    {% endfor %}
+    </ul>
+</div>
