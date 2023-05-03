@@ -1,24 +1,55 @@
-from django.http import JsonResponse, HttpResponse
-from django.db.models import Count
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+
+import django_filters
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
+
+from rest_framework import filters
+from rest_framework.pagination import PageNumberPagination
 
 from .models import User
-from .forms import UserForm
 
-class OllUsersList(ListView):
-    template_name = 'user/my_user_list.html'
-    model = User
+from .serializers import UserSerializer
 
-class IdUser(DetailView):
-    model = User
-    pk_url_kwarg = 'user_id'
+#
+# class UserListView(ListCreateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+#
+# class UserView(RetrieveUpdateDestroyAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
-class CreateUser(CreateView):
-    model = User
-    form_class = UserForm
-    template_name = 'user/user_form.html'
-    success_url = reverse_lazy('user-list')
+
+
+
+
+class UserFilter(django_filters.FilterSet):
+    class Meta:
+        model = User
+        fields = {
+            'first_name': ['contains'],
+            'age': ['gte', 'lte', 'gt', 'lt', 'exact']
+        }
+
+class CustomPaginator(PageNumberPagination):
+    page_size_query_param = 'page_size'
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    filterset_class = UserFilter
+
+    search_fields = ['first_name', 'last_name']
+    ordering_fields = ['age']
+    pagination_class = CustomPaginator
+
+    max_page_size = 3
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+    ]
 
 
 
