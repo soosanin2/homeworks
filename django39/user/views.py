@@ -10,19 +10,6 @@ from .models import User
 
 from .serializers import UserSerializer
 
-#
-# class UserListView(ListCreateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#
-#
-# class UserView(RetrieveUpdateDestroyAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
-
-
-
 
 class UserFilter(django_filters.FilterSet):
     class Meta:
@@ -32,24 +19,37 @@ class UserFilter(django_filters.FilterSet):
             'age': ['gte', 'lte', 'gt', 'lt', 'exact']
         }
 
+
 class CustomPaginator(PageNumberPagination):
     page_size_query_param = 'page_size'
+    page_size = 10
+
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    filterset_class = UserFilter
-
-    search_fields = ['first_name', 'last_name']
-    ordering_fields = ['age']
     pagination_class = CustomPaginator
 
-    max_page_size = 3
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
         filters.SearchFilter,
+        filters.OrderingFilter
     ]
+    filterset_class = UserFilter
+    search_fields = ['first_name', 'last_name']
+    ordering_fields = ['age']
+
+
+    # filterset_class = UserFilter
+    #
+    # search_fields = ['first_name', 'last_name']
+    # ordering_fields = ['age']
+
+    # filter_backends = [
+    #     django_filters.rest_framework.DjangoFilterBackend,
+    #     filters.SearchFilter,
+    # ]
 
 
 
