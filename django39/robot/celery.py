@@ -10,3 +10,12 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.autodiscover_tasks()
 
+app.conf.beat_schedule = {
+    'schedule_print': {
+        'task': 'user.tasks.all_users',
+        'schedule': 60,
+        'args': (),
+        'kwargs': {},
+    }
+}
+
