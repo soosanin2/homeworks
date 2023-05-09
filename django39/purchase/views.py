@@ -1,36 +1,33 @@
-from django.http import JsonResponse
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+import django_filters
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+
+from rest_framework import filters
 
 from .models import Purchase
-from .forms import PurchaseForm
+
+from .serializers import PurchaseSerializer
 
 
-class OllPurchasesList(ListView):
-    model = Purchase
-
-
-class IdPurchase(DetailView):
-    model = Purchase
-    pk_url_kwarg = 'purchase_id'
-
-
-class CreatePurchase(CreateView):
-    model = Purchase
-    form_class = PurchaseForm
-    template_name = 'purchase/purchase_form.html'
-    success_url = reverse_lazy('purchase-list')
-
-
-def get_purchases(request):
-    purchases = Purchase.objects.all()
-    purchase_list = []
-    for purchase in purchases:
-        purchase_dict = {
-            'id': purchase.id,
-            'user_id': purchase.user_id.id,
-            'book_id': purchase.book_id.id,
-            'date': purchase.date
+class PurchaseFilter(django_filters.FilterSet):
+    class Meta:
+        model = Purchase
+        fields = {
+            'book_id': ['exact', 'in'],
+            'user_id': ['exact', 'in'],
+            'date': ['year', 'month', 'day']
         }
-        purchase_list.append(purchase_dict)
-    return JsonResponse({'purchases': purchase_list})
+
+
+class PurchaseViewSet(ModelViewSet):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
+
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    ]
+    filterset_class = PurchaseFilter
+    search_fields = ['book_id', 'user_id']
+    ordering_fields = ['date']

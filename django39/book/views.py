@@ -1,53 +1,56 @@
-from django.http import JsonResponse, HttpResponse
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
 
+import django_filters
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+
+from rest_framework import filters
 from .models import Book, PublishingHouse
-from .forms import BookForm, PublishingHouseForm
-
-
-class OllPublishingHouse(ListView):
-    model = PublishingHouse
-    template_name = 'book/publishing_house_list.html'
-
-class IdPublishingHouse(DetailView):
-    model = PublishingHouse
-    pk_url_kwarg = 'publishing_house_id'
-    template_name = 'book/publishing_house_detail.html'
-
-class CreatePublishingHouse(CreateView):
-    model = PublishingHouse
-    form_class = PublishingHouseForm
-    template_name = 'book/publishing_house_form.html'
-    success_url = reverse_lazy('publishing_house-list')
+from rest_framework.pagination import PageNumberPagination
+from .serializers import BookSerializer, PublishingHouseSerializer
 
 
 
-class OllBooksList(ListView):
-    model = Book
-
-class IdBook(DetailView):
-    model = Book
-    pk_url_kwarg = 'book_id'
-
-class CreateBook(CreateView):
-    model = Book
-    form_class = BookForm
-    template_name = 'book/book_form.html'
-    success_url = reverse_lazy('book-list')
-
-
-def get_books(request):
-    books = Book.objects.all()
-    book_list = []
-    for book in books:
-        book_dict = {
-            'id': book.id,
-            'title': book.title,
-            'author': book.author,
-            'year': book.year,
-            'price': book.price,
-            'publishing_house_id': book.publishing_house_id.id
+class BookFilter(django_filters.FilterSet):
+    class Meta:
+        model = Book
+        fields = {
+            'title': ['contains'],
+            'price': ['gte', 'lte', 'gt', 'lt', 'exact']
         }
-        book_list.append(book_dict)
-    return JsonResponse({'books': book_list})
+
+class PublishingHouseFilter(django_filters.FilterSet):
+    class Meta:
+        model = PublishingHouse
+        fields = {
+            'name': ['contains'],
+            'rating': ['gte', 'lte', 'gt', 'lt', 'exact']
+        }
+
+
+
+class BookViewSet(ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    ]
+    filterset_class = BookFilter
+    search_fields = ['title', 'author']
+    ordering_fields = ['price']
+
+
+class PublishingHouseViewSet(ModelViewSet):
+    queryset = PublishingHouse.objects.all()
+    serializer_class = PublishingHouseSerializer
+
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    ]
+    filterset_class = PublishingHouseFilter
+    search_fields = ['name']
+    ordering_fields = ['rating']
