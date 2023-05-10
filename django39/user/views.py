@@ -31,7 +31,6 @@ class UserViewSet(ModelViewSet):
 
     pagination_class = CustomPaginator
 
-
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
         filters.SearchFilter,
