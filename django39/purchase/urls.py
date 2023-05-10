@@ -6,7 +6,6 @@ from .views import PurchaseViewSet
 
 urlpatterns = [
 
-
 ]
 
 router = SimpleRouter()
