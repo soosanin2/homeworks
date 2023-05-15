@@ -41,7 +41,3 @@ class UserViewSet(ModelViewSet):
     ordering_fields = ['age']
 
 
-
-
-
-
