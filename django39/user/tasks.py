@@ -9,12 +9,10 @@ def my_task():
     print(f'old user {users.count()}')
 
 
-
-@shared_task(bind=False)
+@shared_task()
 def count_user_purchases(user_id):
-    user = User.objects.filter(id=user_id).first()
-    purchase = Purchase.objects.filter(user_id=user.id)
-    print(f'{user.first_name} {user.last_name} has {purchase.count()} purchases')
+    user = User.objects.get(id=user_id)
+    print(f'{user.first_name} {user.last_name} has {user.purchases.count()} purchases')
 
 
 @shared_task
