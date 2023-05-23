@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -91,15 +91,21 @@ REST_FRAMEWORK = {
 
 
 
-# Database
+# Database(Postgresql)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "robot",
+        "USER": "robot",
+        "PASSWORD": "robot",
+        "HOST": "database",
+        "PORT": "5432",
+
     }
 }
+
 
 
 # Password validation
