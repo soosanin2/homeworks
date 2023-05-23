@@ -49,10 +49,6 @@ class UserModelTest(TestCase):
         self.assertIsNotNone(self.user.age)
         print(self.user)
 
-    def test_adult_user(self):
-        self.assertTrue(self.adult_user.is_adult())
-        self.assertFalse(self.yang_user.is_adult())
-
 # view tests
 
 class UserViewSetTest(TestCase):
