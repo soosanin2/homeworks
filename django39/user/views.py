@@ -41,17 +41,3 @@ class UserViewSet(ModelViewSet):
     ordering_fields = ['age']
 
 
-    # filterset_class = UserFilter
-    #
-    # search_fields = ['first_name', 'last_name']
-    # ordering_fields = ['age']
-
-    # filter_backends = [
-    #     django_filters.rest_framework.DjangoFilterBackend,
-    #     filters.SearchFilter,
-    # ]
-
-
-
-
-

@@ -5,8 +5,7 @@ from .views import PurchaseViewSet
 
 
 urlpatterns = [
-    # path('', PurchaseListView.as_view(), name='purchase-list'),
-    # path('<int:pk>', PurchaseView.as_view(), name='purchase-main')
+
 ]
 
 router = SimpleRouter()
