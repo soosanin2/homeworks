@@ -83,11 +83,10 @@ class UserViewSetTest(TestCase):
 
     def test_user_create_option_two(self):
         response = self.client.get(f'/user/{self.user.id}/')
-        user = User.objects.first()
         self.assertEqual(User.objects.count(), 1)
-        self.assertEqual(user.first_name, response.json().get('first_name'))
-        self.assertEqual(user.last_name, response.json().get('last_name'))
-        self.assertEqual(user.age, response.json().get('age'))
+        self.assertEqual(self.user.first_name, response.json().get('first_name'))
+        self.assertEqual(self.user.last_name, response.json().get('last_name'))
+        self.assertEqual(self.user.age, response.json().get('age'))
 
     def test_get_user_list_option_two(self):
         url = reverse('user-list')
@@ -98,11 +97,10 @@ class UserViewSetTest(TestCase):
     def test_get_user_detail(self):
         url = reverse('user-detail', kwargs={'pk': self.user.pk})
         response = self.client.get(url)
-        user = User.objects.first()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json().get('first_name'), user.first_name)
-        self.assertEqual(response.json().get('last_name'), user.last_name)
-        self.assertEqual(response.json().get('age'), user.age)
+        self.assertEqual(response.json().get('first_name'), self.user.first_name)
+        self.assertEqual(response.json().get('last_name'), self.user.last_name)
+        self.assertEqual(response.json().get('age'), self.user.age)
 
     def test_delete_user(self):
         url = reverse('user-detail', kwargs={'pk': self.user.pk})
